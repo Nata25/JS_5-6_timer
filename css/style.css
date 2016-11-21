@@ -1,0 +1,38 @@
+* {
+    font-family: Arial, sans-serif;
+}
+
+.timer {
+    width: 300px;
+    height: 100px;
+    margin: 20px;
+    border: 1px solid #000;
+    font-family: monospace;
+    font-size: 60px;
+    font-weight: bold;
+    line-height: 90px;
+    text-align: center;
+}
+
+.start-button,
+.clear-button {
+    display: inline-block;
+    width: 150px;
+    height: 50px;
+    margin: 10px;
+    border-radius: 20px;
+    color: #fff;
+    font-size: 25px;
+    line-height: 50px;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.start-button {
+    background-color: #7171de;
+}
+
+.clear-button {
+    background-color: #da916d;
+}
