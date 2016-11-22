@@ -1,4 +1,5 @@
 var start, stop = 0;
+var timerOn;
 
 function Timer(time) {
     const msInSec = 1000;
@@ -27,27 +28,33 @@ function Timer(time) {
             "</span>";
         container.innerHTML = clock;
     }
+
+    this.increment = function() {
+        this.timePassed++;
+    }
 }
 
 var timerContainer = timer;
 var startButton = document.getElementById("start");
 var clearButton = document.getElementById("clear");
 
-timer = new Timer(3660201);
-console.log(timer.toString());
+timer = new Timer(0);
 
 timer.draw(timerContainer);
 
 function formatDigits(num, base) {
-    return (num < base) ? ("00" + num).slice(-base) : num;
+    return ("00" + num).slice(-base);
 }
 
 function startTimer() {
-    alert("Start timer!");
+    timerOn = setInterval(function() {
+        timer.increment();
+        timer.draw(timerContainer);
+    }, 1);
 }
 
 function clearTimer() {
-    alert("Clear timer!");
+    clearInterval(timerOn);
 }
 
 startButton.addEventListener("click", startTimer, false);
