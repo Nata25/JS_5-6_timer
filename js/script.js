@@ -1,41 +1,54 @@
 var start, stop = 0;
 
-const msInSec = 1000;
-const msInMin = 60000;
-const msInHour = 3600000;
+function Timer(time) {
+    const msInSec = 1000;
+    const msInMin = 60000;
+    const msInHour = 3600000;
 
-function Timer(ms) {
-    this.miliseconds = ms;
+    this.timePassed = time;
+
     this.toString = function() {
         var seconds, minutes, hours;
-        minutes = seconds = 0;
-        return twoDigits(minutes) + ":" + twoDigits(seconds) + ":" + twoDigits(ms);
+        hours = Math.floor(this.timePassed / msInHour);
+        minutes = Math.floor((this.timePassed / msInMin) % 60);
+        seconds = Math.floor((this.timePassed / msInSec) % 60);
+        miliseconds = this.timePassed % msInSec;
+
+        return formatDigits(hours, 2) +
+         ":" + formatDigits(minutes, 2) +
+         ":" + formatDigits(seconds, 2) +
+         ":" + formatDigits(miliseconds, 3);
+    }
+
+    this.draw = function(container) {
+        clock = this.toString().slice(0, -4) +
+            "<span id='miliseconds'>" +
+            timer.toString().slice(-3) +
+            "</span>";
+        container.innerHTML = clock;
     }
 }
 
-var timerContainer = document.getElementsByClassName("timer")[0];
-var startButton = document.getElementsByClassName("start-button")[0];
-var clearButton = document.getElementsByClassName("clear-button")[0];
+var timerContainer = timer;
+var startButton = document.getElementById("start");
+var clearButton = document.getElementById("clear");
 
-// miliseconds = 0;
+timer = new Timer(3660201);
+console.log(timer.toString());
 
-// miliseconds = toDigits(miliseconds);
+timer.draw(timerContainer);
 
-timer = new Timer(0);
-
-timerContainer.innerText = timer.toString();
-
-function twoDigits(num) {
-    return (num < 10) ? ("0" + num) : num;
+function formatDigits(num, base) {
+    return (num < base) ? ("00" + num).slice(-base) : num;
 }
 
-function start() {
+function startTimer() {
     alert("Start timer!");
 }
 
-function clear() {
+function clearTimer() {
     alert("Clear timer!");
 }
 
-startButton.addEventListener("click", start, false);
-clearButton.addEventListener("click", clear, false);
+startButton.addEventListener("click", startTimer, false);
+clearButton.addEventListener("click", clearTimer, false);
