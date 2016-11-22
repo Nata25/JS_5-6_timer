@@ -1,4 +1,3 @@
-var start, stop = 0;
 var timerOn;
 
 function Timer(time) {
@@ -22,15 +21,11 @@ function Timer(time) {
     }
 
     this.draw = function(container) {
-        clock = this.toString().slice(0, -4) +
-            "<span id='miliseconds'>" +
-            timer.toString().slice(-3) +
-            "</span>";
+        clock = this.toString().slice(0, -4)
+            + "<span id='miliseconds'>"
+            + timer.toString().slice(-3)
+            + "</span>";
         container.innerHTML = clock;
-    }
-
-    this.increment = function() {
-        this.timePassed++;
     }
 }
 
@@ -47,8 +42,9 @@ function formatDigits(num, base) {
 }
 
 function startTimer() {
+    var start = Date.now();
     timerOn = setInterval(function() {
-        timer.increment();
+        timer.timePassed = Date.now() - start;
         timer.draw(timerContainer);
     }, 1);
 }
