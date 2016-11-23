@@ -17,16 +17,16 @@ function Timer(time, container) {
         seconds = Math.floor((this.timePassed / 1000) % 60);
         miliseconds = this.timePassed % 1000;
 
-        return leadingZeroes(hours, 2) +
-         ":" + leadingZeroes(minutes, 2) +
-         ":" + leadingZeroes(seconds, 2) +
-         ":" + leadingZeroes(miliseconds, 3);
+        return leadingZero(hours) +
+         ":" + leadingZero(minutes) +
+         ":" + leadingZero(seconds) +
+         ":" + miliseconds;
     }
 
     this.draw = function() {
-        this.container.innerHTML = this.toString().slice(0, -4)
+        this.container.innerHTML = this.toString().slice(0, 8)
             + "<span id='miliseconds'>"
-            + timer.toString().slice(-3)
+            + timer.toString().slice(9)
             + "</span>";
     }
 }
@@ -34,8 +34,8 @@ function Timer(time, container) {
 // Helper for toString() method; add leading 0
 // @param num, base number > 0
 // @return string
-function leadingZeroes(num, base) {
-    return ("00" + num).slice(-base);
+function leadingZero(num) {
+    return ("0" + num).slice(-2);
 }
 
 // Event listener for start/pause/continue button
