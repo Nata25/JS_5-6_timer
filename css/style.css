@@ -1,43 +1,22 @@
-* {
-    font-family: Arial, sans-serif;
+.jumbotron {
+    margin: 50px auto;
+    width: 50%;
 }
 
 #myTimer {
     width: 250px;
-    margin: 20px;
     padding: 20px;
-    border: 1px solid #000;
-    font-family: monospace;
     font-size: 50px;
     font-weight: bold;
-    text-align: center;
 }
 
 #miliseconds {
     display: inline-block;
     margin-right: 10px;
-    float: right;
     font-size: 14px;
 }
 
 .button {
-    display: inline-block;
     width: 122px;
-    height: 50px;
-    margin: 20px;
-    border-radius: 20px;
-    color: #fff;
-    font-size: 20px;
-    line-height: 50px;
-    text-align: center;
-    text-transform: uppercase;
-    cursor: pointer;
-}
-
-#start {
-    background-color: #7171de;
-}
-
-#clear {
-    background-color: #da916d;
+    margin-top: 20px;
 }

@@ -25,7 +25,7 @@ function Timer(time, container) {
 
     this.draw = function() {
         this.container.innerHTML = this.toString().slice(0, 8)
-            + "<span id='miliseconds'>"
+            + "<span class='pull-right' id='miliseconds'>"
             + timer.toString().slice(9)
             + "</span>";
     }
@@ -41,12 +41,14 @@ function leadingZero(num) {
 // Event listener for start/pause/continue button
 function startTimer() {
     if (inProgress) {
-        clearInterval(timerOn);
         startButton.innerText = "continue";
+        startButton.className = "button btn btn-success btn-lg";
+        clearInterval(timerOn);
         timer.draw();
         inProgress = false;
     }
     else {
+        startButton.className = "button btn btn-primary btn-lg";
         startButton.innerText = "pause";
         var start = Date.now();
         timerOn = setInterval(function() {
@@ -64,6 +66,7 @@ function clearTimer() {
     timer.timePassed = 0;
     timer.draw();
     startButton.innerText = "start";
+    startButton.className = "button btn btn-success btn-lg";
     inProgress = false;
 }
 
