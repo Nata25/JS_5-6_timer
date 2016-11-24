@@ -1,10 +1,9 @@
-var timerOn;
-var current = 0;
-var inProgress = false;
-
 var timerContainer = myTimer;
 var startButton = document.getElementById("start");
 var clearButton = document.getElementById("clear");
+
+var timerOn;
+var inProgress = false;
 
 function Timer(time, container) {
     this.timePassed = time;
@@ -17,9 +16,9 @@ function Timer(time, container) {
         seconds = Math.floor((this.timePassed / 1000) % 60);
         miliseconds = this.timePassed % 1000;
 
-        return leadingZero(hours) +
-         ":" + leadingZero(minutes) +
-         ":" + leadingZero(seconds) +
+        return ("0" + hours).slice(-2) +
+         ":" + ("0" + minutes).slice(-2) +
+         ":" + ("0" + seconds).slice(-2) +
          ":" + miliseconds;
     }
 
@@ -29,13 +28,6 @@ function Timer(time, container) {
             + timer.toString().slice(9)
             + "</span>";
     }
-}
-
-// Helper for toString() method; add leading 0
-// @param num, base number > 0
-// @return string
-function leadingZero(num) {
-    return ("0" + num).slice(-2);
 }
 
 // Event listener for start/pause/continue button
@@ -48,6 +40,7 @@ function startTimer() {
         inProgress = false;
     }
     else {
+        var current = timer.timePassed;
         startButton.className = "button btn btn-primary btn-lg";
         startButton.innerText = "pause";
         var start = Date.now();
@@ -56,7 +49,6 @@ function startTimer() {
             timer.draw();
         }, 1);
         inProgress = true;
-        current = timer.timePassed;
     }
 }
 
